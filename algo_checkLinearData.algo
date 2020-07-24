@@ -49,6 +49,8 @@ END
 
 
 
+
+
 // method 1 sum of overlapping elements
 
 ALGORITHM sum_of_distinct
@@ -93,6 +95,63 @@ END
 
 
 
+//method 2 sum of distinct and overlap element
+
+ALGORITHM distinct_overlap
+VAR
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    set1 : ARRAY_OF INTEGER[N];
+    set2 : ARRAY_OF INTEGER[M];
+    i,j,N,M,sum_dist,sum_overlap : INTEGER;
+    count : INTEGER;
+BEGIN
+    Write("Give the length of set 1");
+    Read(N);
+    Write("Give the length of set 2");
+    Read(M);
+    Write("Give the first set");
+    FOR i FROM 0 TO N-1 DO
+        Read(set1[i]);
+    END_FOR
+    Write("Give the second set");
+    FOR j FROM 0 TO M-1 DO
+        Read(set2[j]);
+    END_FOR
+    FOR i FROM 0 TO N-1 DO
+        IF (htab.lookup(set1[i]=TRUE)) THEN
+            count := htab.get(set[i]) + 1;
+            htab.insert(set1[i],count);
+        ELSE
+            count := 1;
+            htab.insert(set1[i],count);
+        END_IF
+    END_FOR
+    FOR j FROM 0 TO N-1 DO
+        IF (htab.lookup(set2[j]=TRUE)) THEN
+            count := htab.get(set2[j]) + 1;
+            htab.insert(set2[j],count);
+        ELSE
+            count := 1;
+            htab.insert(set2[j],count);
+        END_IF
+    END_FOR
+    FOR i FROM 0 TO N-1 DO
+        IF (htab.get(set1[i]) > 1) THEN
+            sum_overlap := sum_overlap + set1[i];
+        ELSE
+            sum_of_distinct := sum_of_distinct + set1[i];
+        END_IF
+    END_FOR
+    FOR j FROM 0 TO M-1 DO
+        IF (htab.get(set2[j]) > 1) THEN
+            sum_overlap := sum_overlap + set2[j];
+        ELSE
+            sum_of_distinct := sum_of_distinct + set2[j];
+        END_IF
+    END_FOR
+    Write("Sum of distinct element is",sum_of_distinct);
+    Write("Sum of overlap element is",sum_overlap);
+END
 
 
 
