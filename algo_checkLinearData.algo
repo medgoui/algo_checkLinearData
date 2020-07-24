@@ -1,0 +1,55 @@
+//method 1 sum of all distinct elements
+
+ALGORITHM sum_of_distinct
+VAR
+    set1 : ARRAY_OF INTEGER[N];
+    set2 : ARRAY_OF INTEGER[M];
+    distinct_set : ARRAY_OF INTEGER[O];
+    i,j,N,M,sum : INTEGER;
+    O : INTEGER := 0;
+BEGIN
+    Write("Give the length of set 1");
+    Read(N);
+    Write("Give the length of set 2");
+    Read(M);
+    Write("Give the first set");
+    FOR i FROM 0 TO N-1 DO
+        Read(set1[i]);
+    END_FOR
+    Write("Give the second set");
+    FOR j FROM 0 TO M-1 DO
+        Read(set2[j]);
+    END_FOR
+    FOR i FROM 0 TO N-1 DO
+        FOR j FROM 0 TO M-1 DO
+            IF (set1[i]<>set2[j]) THEN
+                distinct_set[O] := set1[i];
+                O := O+1;
+            END_IF
+        END_FOR
+    END_FOR
+    FOR j FROM 0 TO M-1 DO
+        FOR i FROM 0 TO N-1 DO
+            IF (set1[i]<>set2[j]) THEN
+                distinct_set[O] := set2[j];
+                O := O+1;
+            END_IF
+        END_FOR
+    END_FOR
+    FOR i FROM 0 TO O-1 DO
+        sum := sum + distinct_set[i];
+    END_FOR
+    Write("Sum of distinct is",sum);
+END
+
+
+
+
+
+
+
+
+
+
+
+
